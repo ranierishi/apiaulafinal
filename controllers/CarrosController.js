@@ -1,4 +1,4 @@
-const { Carro } = require('../../NodeJS34/models');
+const { Carro } = require('../models/');
 const { Op } = require("sequelize");
 
 class CarrosController {
@@ -48,8 +48,10 @@ class CarrosController {
     async inserirCarro(req,res) {
         /* Escrever lógica de negócio */
         try {
+            
             let carroParaInserir = req.body;
             const carroResultado = await Carro.create(carroParaInserir);
+            console.log(carroResultado)
             return res.status(200).json(carroResultado);
         }
         catch (err) {

@@ -54,7 +54,9 @@ class PessoaController {
 
                 return res.status(200).json({
                     auth: true,
-                    token: token
+                    token: token,
+                    nome: pessoa_encontrada.nome,
+                    email,
                 });  
             }                
             else 
@@ -67,11 +69,12 @@ class PessoaController {
 
     async create(req,res) { /* POST */
         try {
+            console.log(req.body)
             const pessoa = await Pessoa.create(req.body);
             return res.status(200).json(pessoa);
         }
         catch (e) {
-            return res.status(200).json({error: e.json.message});
+            return res.status(200).json({error: e});
         }
     }
 
